@@ -1,0 +1,52 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "$comment": "JustifyCode default configuration - JustifyLocal's customized OpenCode fork",
+
+  "provider": "google",
+  "model": "gemini-3.0-pro-preview",
+
+  "providers": {
+    "google": {
+      "models": ["gemini-3.0-pro-preview", "gemini-2.5-pro"],
+      "notes": "Default provider - Gemini 3 Pro Preview has 2M context"
+    },
+    "anthropic": {
+      "models": ["claude-sonnet-4-20250514"],
+      "notes": "Alternative for nuanced tasks"
+    },
+    "openai": {
+      "models": ["gpt-4o"],
+      "notes": "OpenAI option"
+    },
+    "ollama": {
+      "models": ["llama3.2:latest"],
+      "notes": "Local/offline option via Ollama"
+    }
+  },
+
+  "mcp": {
+    "justifymcp": {
+      "type": "remote",
+      "url": "http://localhost:8000/mcp",
+      "enabled": false,
+      "description": "JustifyLocal SEO tools (28 tools) - requires local JustifyMCP installation. See SETUP.md for instructions."
+    }
+  },
+
+  "tools": {
+    "justifymcp_*": false
+  },
+
+  "permission": {
+    "bash": "ask",
+    "write": "ask",
+    "edit": "auto",
+    "mcp": "auto",
+    "read": "allow"
+  },
+
+  "skills": ["local-seo"],
+
+  "theme": "justifylocal"
+}
+

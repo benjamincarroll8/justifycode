@@ -1,0 +1,70 @@
+{
+  "name": "JustifyLocal",
+  "description": "JustifyLocal's mint green theme for JustifyCode",
+  "author": "JustifyLocal",
+  "version": "1.0.0",
+  
+  "colors": {
+    "primary": "#3EB489",
+    "primaryForeground": "#FFFFFF",
+    "secondary": "#2D8B6F",
+    "secondaryForeground": "#FFFFFF",
+    
+    "background": "#1A1A1A",
+    "foreground": "#E8E8E8",
+    "mutedForeground": "#888888",
+    
+    "surface": "#252525",
+    "surfaceHighlight": "#333333",
+    
+    "border": "#3A3A3A",
+    "borderFocus": "#3EB489",
+    
+    "accent": "#3EB489",
+    "accentForeground": "#FFFFFF",
+    
+    "success": "#3EB489",
+    "successForeground": "#FFFFFF",
+    
+    "warning": "#FFE66D",
+    "warningForeground": "#1A1A1A",
+    
+    "error": "#FF6B6B",
+    "errorForeground": "#FFFFFF",
+    
+    "info": "#5BC0DE",
+    "infoForeground": "#FFFFFF",
+    
+    "selection": "#3EB48933",
+    "cursor": "#3EB489",
+    
+    "toolSuccess": "#3EB489",
+    "toolError": "#FF6B6B",
+    "toolPending": "#FFE66D",
+    
+    "diffAdd": "#3EB48944",
+    "diffRemove": "#FF6B6B44",
+    "diffChange": "#FFE66D44"
+  },
+  
+  "typography": {
+    "fontFamily": "JetBrains Mono, Menlo, Monaco, Consolas, monospace",
+    "fontSize": "14px",
+    "lineHeight": "1.5"
+  },
+  
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px"
+  },
+  
+  "borderRadius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px"
+  }
+}
+

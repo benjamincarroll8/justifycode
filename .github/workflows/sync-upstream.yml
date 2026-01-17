@@ -1,0 +1,58 @@
+name: Sync Fork with Upstream OpenCode
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    name: Sync with upstream OpenCode
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: dev
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/anomalyco/opencode.git
+          git fetch upstream
+
+      - name: Check for upstream changes
+        id: check
+        run: |
+          BEHIND=$(git rev-list --count dev..upstream/dev)
+          echo "commits_behind=$BEHIND" >> $GITHUB_OUTPUT
+          if [ "$BEHIND" -gt 0 ]; then
+            echo "Upstream has $BEHIND new commits"
+            echo "has_updates=true" >> $GITHUB_OUTPUT
+          else
+            echo "Fork is up to date with upstream"
+            echo "has_updates=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Merge upstream changes
+        if: steps.check.outputs.has_updates == 'true'
+        id: merge
+        run: |
+          git merge upstream/dev --no-edit && echo "merge_success=true" >> $GITHUB_OUTPUT || echo "merge_success=false" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Push if merge succeeded
+        if: steps.check.outputs.has_updates == 'true' && steps.merge.outputs.merge_success == 'true'
+        run: git push origin dev
+
